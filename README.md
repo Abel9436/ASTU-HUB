@@ -1,6 +1,3 @@
-Here's a README for your repository:
-
----
 
 # ASTU-HUB
 
