@@ -1,6 +1,7 @@
 import 'package:astu_hub/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -11,6 +12,13 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
+  @override
+  void initState() {
+    Hive.box('settings').put('is_onboarded', true);
+    super.initState();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     var appcolor = Theme.of(context).colorScheme;

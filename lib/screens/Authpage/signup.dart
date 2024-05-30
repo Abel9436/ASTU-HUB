@@ -1,3 +1,4 @@
+import 'package:astu_hub/screens/Homescreens/personaldatas.dart';
 import 'package:astu_hub/widgets/Custom_Text_field.dart';
 import 'package:astu_hub/widgets/custom_button.dart';
 import 'package:flutter/foundation.dart';
@@ -22,37 +23,6 @@ class _SignupState extends State<Signup> {
   ];
   var error_text = '';
   String Selected_question = 'What is Your Name ?';
-  void Signup(name, password, securityanswer) {
-    try {
-      if (name != null && password != null && securityanswer != null) {
-        DBBox.put('name', name.toString());
-        DBBox.put('password', password.toString());
-        DBBox.put('question', Selected_question);
-        DBBox.put('answer', securityanswer);
-
-        showDialog(
-            context: context,
-            builder: (BuildContextcontext) {
-              return AlertDialog(
-                content:
-                    Center(child: Text('You Have successfully Singnes up')),
-                actions: [
-                  InkWell(
-                    child: Text('ok'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                  )
-                ],
-              );
-            });
-      }
-    } catch (e) {
-      setState(() {
-        error_text = e.toString();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +33,54 @@ class _SignupState extends State<Signup> {
     Color appcolor2 = Theme.of(context).colorScheme.secondary;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    void Signup(name, password, securityanswer) {
+      try {
+        if (name != null && password != null && securityanswer != null) {
+          DBBox.put('gpa', null);
+          DBBox.put('cgpa', null);
+          Hive.box<Task>('tasks').clear();
+          DBBox.put('name', name.toString());
+          DBBox.put('password', password.toString());
+          DBBox.put('question', Selected_question);
+          DBBox.put('answer', securityanswer);
+
+          showDialog(
+              context: context,
+              builder: (BuildContextcontext) {
+                return Padding(
+                  padding: EdgeInsets.only(top: height / 3, bottom: height / 3),
+                  child: AlertDialog(
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.done, size: height / 10),
+                        Center(
+                            child: Text(
+                          'You Have successfully Singnes up',
+                          style: TextStyle(
+                              fontSize: height / 45,
+                              fontWeight: FontWeight.bold),
+                        )),
+                      ],
+                    ),
+                    actions: [
+                      InkWell(
+                        child: Text('ok'),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                      )
+                    ],
+                  ),
+                );
+              });
+        }
+      } catch (e) {
+        setState(() {
+          error_text = e.toString();
+        });
+      }
+    }
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -130,7 +148,7 @@ class _SignupState extends State<Signup> {
                   child: DropdownButton(
                       iconEnabledColor: appcolor.primary,
                       isExpanded: true,
-                      dropdownColor: Theme.of(context).colorScheme.primary,
+                      dropdownColor: Theme.of(context).colorScheme.tertiary,
                       icon: Icon(Icons.arrow_drop_down_circle_outlined),
                       underline: SizedBox(
                         height: 0,
@@ -207,7 +225,7 @@ class _SignupState extends State<Signup> {
               SizedBox(height: height / 30),
               Text(
                 '@Developed By ABEL',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: appcolor.primary),
               ),
             ],
           ),

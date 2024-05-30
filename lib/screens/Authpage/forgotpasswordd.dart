@@ -22,12 +22,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   ];
   var error_text = '';
   String Selected_question = 'What is Your Name ?';
-  void validate(question, answer) async {
+  void validate(String question, String answer) {
     try {
-      var quest = DBBox.get('question');
-      var ans = DBBox.get('answer');
-      if (quest.toString() == question.toString() &&
-          ans.toString() == answer.toString()) {
+      var storedQuestion = DBBox.get('question');
+      var storedAnswer = DBBox.get('answer');
+      print(storedAnswer.toString() + answer);
+      print(storedQuestion.toString() + question);
+      if (storedQuestion == question && storedAnswer == answer) {
         Navigator.pushNamed(context, '/mainhome');
       } else {
         setState(() {
@@ -124,7 +125,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               CustomTextField(
                 prifixicon: Icon(Icons.question_answer,
-                    color: Color.fromARGB(137, 104, 104, 104)),
+                    color: Theme.of(context).colorScheme.tertiary),
                 placeholder: 'Your Answer',
                 controller: answercontroller,
                 height: height / 18,
@@ -143,8 +144,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   height: height / 18,
                   OnClicked: () {
-                    validate(Selected_question.toString(),
-                        answercontroller.text.trim().toString());
+                    validate(
+                        Selected_question.toString(), answercontroller.text);
                   }),
               SizedBox(
                 height: height / 30,
@@ -160,7 +161,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(height: height / 30),
               Text(
                 '@Developed By ABEL',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             ],
           ),

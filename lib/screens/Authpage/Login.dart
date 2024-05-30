@@ -155,7 +155,7 @@ class _LoginState extends State<Login> {
               SizedBox(height: height / 5),
               Text(
                 '@Developed By ABEL',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: appcolor.primary),
               ),
             ],
           ),

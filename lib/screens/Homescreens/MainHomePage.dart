@@ -1,3 +1,4 @@
+import 'package:astu_hub/main.dart';
 import 'package:astu_hub/screens/Homescreens/homepage.dart';
 import 'package:astu_hub/screens/Homescreens/homepage1.dart';
 import 'package:astu_hub/screens/Homescreens/personaldatas.dart';
@@ -6,17 +7,6 @@ import 'package:astu_hub/widgets/CustomDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/widgets.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,7 +27,18 @@ class _HomeScreenState extends State<HomeScreen> {
     var appcolor = Theme.of(context).colorScheme;
     return Scaffold(
       drawer: CustomDrawer(),
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Main.themeNotifier.value =
+                    Main.themeNotifier.value == ThemeMode.light
+                        ? ThemeMode.dark
+                        : ThemeMode.light;
+              },
+              icon: Icon(Icons.brightness_2))
+        ],
+      ),
       body: _pages[_pageIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor:

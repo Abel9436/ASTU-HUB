@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       '  Good Morning $username !',
                       style: TextStyle(
-                          fontSize: height / 45, fontWeight: FontWeight.bold),
+                          fontSize: height / 40, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

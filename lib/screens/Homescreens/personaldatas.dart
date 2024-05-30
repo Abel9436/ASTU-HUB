@@ -52,14 +52,15 @@ class _TaskListScreenState extends State<TaskListScreen> {
   }
 
   void editTask(String id, String title, String description) {
-    final taskIndex = _taskBox.keys.toList().indexOf(id);
+    final taskIndex =
+        _taskBox.values.toList().indexWhere((task) => task.id == id);
     if (taskIndex != -1) {
-      final task = Task(
-        id: id,
-        title: title,
-        description: description,
-      );
-      _taskBox.putAt(taskIndex, task);
+      final task = _taskBox.getAt(taskIndex);
+      if (task != null) {
+        task.title = title;
+        task.description = description;
+        _taskBox.putAt(taskIndex, task);
+      }
     }
   }
 
@@ -85,6 +86,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: SizedBox(),
         title: Text(
           'Schedule Your Task Here',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -242,11 +244,13 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                 width: 1000,
                 height: MediaQuery.of(context).size.height / 15,
                 color: Theme.of(context).colorScheme.secondary,
-                text: Text(
-                  'Schedule',
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height / 40,
-                      fontWeight: FontWeight.bold),
+                text: Center(
+                  child: Text(
+                    'Schedule',
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height / 40,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 OnClicked: _submit,
               )
