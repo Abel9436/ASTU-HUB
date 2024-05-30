@@ -187,8 +187,7 @@ class _SignupState extends State<Signup> {
                     child: Text(
                       'SIGNUP',
                       style: TextStyle(
-                          color: appcolor.tertiary,
-                          fontWeight: FontWeight.bold),
+                          color: appcolor.primary, fontWeight: FontWeight.bold),
                     ),
                   ),
                   height: height / 18,

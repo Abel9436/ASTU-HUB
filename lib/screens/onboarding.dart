@@ -56,7 +56,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 text: Center(
                     child: Text('Get Started',
                         style: TextStyle(
-                            color: appcolor.tertiary,
+                            color: appcolor.primary,
                             fontWeight: FontWeight.bold))),
                 width: width / 1.2,
                 height: height / 15,
