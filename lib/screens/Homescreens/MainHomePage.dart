@@ -36,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? ThemeMode.dark
                         : ThemeMode.light;
               },
-              icon: Icon(Icons.brightness_2))
+              icon: Icon((ThemeMode.light == ThemeMode.light)
+                  ? Icons.brightness_2
+                  : Icons.dark_mode))
         ],
       ),
       body: _pages[_pageIndex],

@@ -65,7 +65,7 @@ flutter_launcher_icons:
   web:
     generate: true
     image_path: "assets/images/logo.png"
-    background_color: "#000000"
+    
     
 
   # The "flutter_lints" package below contains a set of recommended lints to

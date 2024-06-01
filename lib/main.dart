@@ -15,24 +15,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
-+/// This is the main entry point for the application
- void main() async {
-   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-   FlutterNativeSplash.preserve(
-     widgetsBinding: widgetsBinding,
-   );
-   WidgetsFlutterBinding.ensureInitialized();
-   await Hive.initFlutter();
-   Hive.registerAdapter(TaskAdapter());
-   await Hive.openBox('Astu Hub');
-   await Hive.openBox<Task>('tasks');
-   var settingsBox = await Hive.openBox('settings');
- 
-   runApp(
-       Main(isOnboarded: settingsBox.get('is_onboarded', defaultValue: false)));
- }
-<<<<<<<  901270b8-a4c2-4ac3-af62-fb7882e84137  >>>>>>>
+void main() async {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(
+  //   widgetsBinding: widgetsBinding,
+  // );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TaskAdapter());
+  await Hive.openBox('Astu Hub');
+  await Hive.openBox<Task>('tasks');
+  var settingsBox = await Hive.openBox('settings');
+
+  runApp(
+      Main(isOnboarded: settingsBox.get('is_onboarded', defaultValue: false)));
+}
 
 class Main extends StatefulWidget {
   final bool isOnboarded;
